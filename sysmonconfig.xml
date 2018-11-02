@@ -396,7 +396,6 @@
 
 		<!--DATA: UtcTime, ProcessGuid, ProcessId, Image-->
 		<ProcessTerminate onmatch="include">
-			<Image condition="begin with">C:\Users</Image> <!--Process terminations by user binaries-->
 		</ProcessTerminate>
 
 		<ProcessTerminate onmatch="exclude">
