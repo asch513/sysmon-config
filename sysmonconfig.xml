@@ -395,8 +395,11 @@
 		<!--COMMENT:	Useful data in building infection timelines.-->
 
 		<!--DATA: UtcTime, ProcessGuid, ProcessId, Image-->
+		<!--
 		<ProcessTerminate onmatch="include">
+			<Image condition="begin with">C:\Users</Image> 
 		</ProcessTerminate>
+                -->
 
 		<ProcessTerminate onmatch="exclude">
 		</ProcessTerminate>
