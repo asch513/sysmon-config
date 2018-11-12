@@ -260,6 +260,10 @@
                         <!--SECTION: VirtualBox-->
 			<Image condition="is">C:\Windows\System32\VBoxService.exe</Image>
                         <ParentImage condition="is">C:\Windows\System32\VBoxService.exe</ParentImage>
+                        <!--SECTION: VXStream-->
+                        <Image condition="is">C:\VxStream\VxKernelSvcNTMgr.exe</Image>
+                        <ParentImage condition="is">C:\VxStream\VxKernelSvcNTMgr.exe</ParentImage>
+                        <ParentCommandLine condition="end with">"C:\\winclient.au3\" </ParentCommandLine>
                         <!--SECTION: WinLogBeat-->
                         <Image condition="end with">\winlogbeat.exe</Image>
                         <ParentImage condition="end with">\winlogbeat.exe</ParentImage>
