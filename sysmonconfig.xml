@@ -114,7 +114,6 @@
 			<CommandLine condition="is">C:\Windows\system32\svchost.exe -k camera -s FrameServer</CommandLine>
 			<CommandLine condition="is">C:\Windows\system32\svchost.exe -k dcomlaunch -s LSM</CommandLine>
 			<CommandLine condition="is">C:\Windows\system32\svchost.exe -k dcomlaunch -s PlugPlay</CommandLine>
-                        <CommandLine condition="is">C:\Windows\system32\svchost.exe -k dcomlaunch</CommandLine>
 			<CommandLine condition="is">C:\Windows\system32\svchost.exe -k defragsvc</CommandLine> <!--Microsoft:Windows defragmentation-->
 			<CommandLine condition="is">C:\Windows\system32\svchost.exe -k devicesflow -s DevicesFlowUserSvc</CommandLine>
 			<CommandLine condition="is">C:\Windows\system32\svchost.exe -k imgsvc</CommandLine> <!--Microsoft:The Windows Image Acquisition Service-->
@@ -419,6 +418,12 @@
 			<Signature condition="contains">microsoft</Signature> <!--Exclude signed Microsoft drivers-->
 			<Signature condition="contains">windows</Signature> <!--Exclude signed Microsoft drivers-->
 			<Signature condition="begin with">Intel </Signature> <!--Exclude signed Intel drivers-->
+                        <Signature condition="is">Bit9, Inc</Signature> <!-- Exclude Bit9 Carbobnlack drivers -->
+                        <Signature condition="begins with">Payload Security</Signature> <!-- Exclude VXstream Hybrid Analysis drivers -->
+                        
+                        <!-- Carbonblack -->
+                        <ImageLoaded condition="is">C:\Windows\System32\drivers\cbstream.sys</ImageLoaded>
+
 		</DriverLoad>
 
 	<!--SYSMON EVENT ID 7 : DLL (IMAGE) LOADED BY PROCESS [ImageLoad]-->
