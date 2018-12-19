@@ -419,7 +419,7 @@
 			<Signature condition="contains">windows</Signature> <!--Exclude signed Microsoft drivers-->
 			<Signature condition="begin with">Intel </Signature> <!--Exclude signed Intel drivers-->
                         <Signature condition="is">Bit9, Inc</Signature> <!-- Exclude Bit9 Carbobnlack drivers -->
-                        <Signature condition="begins with">Payload Security</Signature> <!-- Exclude VXstream Hybrid Analysis drivers -->
+                        <Signature condition="begin with">Payload Security</Signature> <!-- Exclude VXstream Hybrid Analysis drivers -->
                         
                         <!-- Carbonblack -->
                         <ImageLoaded condition="is">C:\Windows\System32\drivers\cbstream.sys</ImageLoaded>
@@ -472,6 +472,8 @@
 
 		<!--DATA: UtcTime, SourceProcessGuid, SourceProcessId, SourceThreadId, SourceImage, TargetProcessGuid, TargetProcessId, TargetImage, GrantedAccess, CallTrace-->
 		<ProcessAccess onmatch="include">
+			<TargetImage condition="is">C:\Windows\system32\lsass.exe</TargetImage>
+			<SourceImage condition="end with">powershell.exe</SourceImage>
 		</ProcessAccess>
 
 	<!--SYSMON EVENT ID 11 : FILE CREATED [FileCreate]-->
