@@ -432,6 +432,7 @@
 
 		<!--DATA: UtcTime, ProcessGuid, ProcessId, Image, ImageLoaded, Hashes, Signed, Signature, SignatureStatus-->
 		<ImageLoad onmatch="include">
+			<Image condition="contains">\Program Files\Common Files\Microsoft Shared\</Image>
 		</ImageLoad>
 
 	<!--SYSMON EVENT ID 8 : REMOTE THREAD CREATED [CreateRemoteThread]-->
@@ -442,7 +443,7 @@
 		<CreateRemoteThread onmatch="exclude">
 			<!--COMMENT: Exclude mostly-safe sources and log anything else.-->
 			<SourceImage condition="is">C:\Windows\system32\wbem\WmiPrvSE.exe</SourceImage>
-			<SourceImage condition="is">C:\Windows\system32\svchost.exe</SourceImage>
+			<!--COMMENT: witnessed some important remote threads created by svchost basch 20190114 <SourceImage condition="is">C:\Windows\system32\svchost.exe</SourceImage> -->
 			<SourceImage condition="is">C:\Windows\system32\wininit.exe</SourceImage>
 			<SourceImage condition="is">C:\Windows\system32\csrss.exe</SourceImage>
 			<SourceImage condition="is">C:\Windows\system32\services.exe</SourceImage>
@@ -475,6 +476,10 @@
 			<TargetImage condition="is">C:\Windows\system32\lsass.exe</TargetImage>
 			<SourceImage condition="end with">powershell.exe</SourceImage>
 		</ProcessAccess>
+
+                <ProcessAccess onmatch="exclude">
+                        <SourceImage condition="is">C:\WINDOWS\System32\VBoxService.exe</SourceImage>
+                </ProcessAccess>
 
 	<!--SYSMON EVENT ID 11 : FILE CREATED [FileCreate]-->
 		<!--EVENT 11: "File created"-->
