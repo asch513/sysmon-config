@@ -306,6 +306,9 @@
 			<Image condition="begin with">C:\Users</Image> <!--Tools downloaded by users can use other processes for networking, but this is a very valuable indicator.-->
 			<Image condition="begin with">C:\ProgramData</Image> <!--Normally, network communications should be sourced from "Program Files" not from ProgramData, something to look at-->
 			<Image condition="begin with">C:\Windows\Temp</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
+			<Image condition="begin with">C:\Temp</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
+			<Image condition="begin with">C:\Tmp</Image> <!--Suspicious anything would communicate from the system-level temp directory-->
+
 			<!--Suspicious Windows tools-->
 			<Image condition="image">at.exe</Image> <!--Microsoft:Windows: Remote task scheduling, removed in Win10 | Credit @ion-storm -->
 			<Image condition="image">certutil.exe</Image> <!--Microsoft:Windows: Certificate tool can contact outbound | Credit @ion-storm @FVT [ https://twitter.com/FVT/status/834433734602530817 ] -->
@@ -356,6 +359,8 @@
 			<Image condition="image">nmap.exe</Image>
 			<Image condition="image">psinfo.exe</Image>
 			<!--Ports: Suspicious-->
+                        <DestinationPort condition="is">443</DestinationPort> <!--all https traffic-->
+                        <DestinationPort condition="is">80</DestinationPort> <!--all http traffic-->
 			<DestinationPort condition="is">22</DestinationPort> <!--SSH protocol, monitor admin connections-->
 			<DestinationPort condition="is">23</DestinationPort> <!--Telnet protocol, monitor admin connections, insecure-->
 			<DestinationPort condition="is">25</DestinationPort> <!--SMTP mail protocol port, insecure, used by threats-->
@@ -384,9 +389,17 @@
 			<Image condition="image">OneDrive.exe</Image> <!--Microsoft:OneDrive-->
 			<Image condition="image">OneDriveStandaloneUpdater.exe</Image> <!--Microsoft:OneDrive-->
 			<Image condition="end with">AppData\Local\Microsoft\Teams\current\Teams.exe</Image> <!--Microsoft: Teams-->
+			<Image condition="end with">\DGAgent\DgAgent.exe</Image> <!--Digital Guardian-->
+			<Image condition="end with">\CarbonBlack\cb.exe</Image> <!--Carbonblack-->
+			<Image condition="end with">\Netskope\STAgent\stAgentSvc.exe</Image> <!--Netskope-->
+                        
 			<DestinationHostname condition="end with">microsoft.com</DestinationHostname> <!--Microsoft:Update delivery-->
 			<DestinationHostname condition="end with">microsoft.com.akadns.net</DestinationHostname> <!--Microsoft:Update delivery-->
 			<DestinationHostname condition="end with">microsoft.com.nsatc.net</DestinationHostname> <!--Microsoft:Update delivery-->
+                        <DestinationHostname condition="end with">.1e100.net</DestinationHostname> <!--google-->
+                        <DestinationHostname condition="end with">.gvt1.com</DestinationHostname> <!--google-->
+                        <DestinationHostname condition="end with">.googleapis.com</DestinationHostname> <!--google-->
+                        <DestinationHostname condition="end with">.goskope.com</DestinationHostname> <!--netskope-->
 		</NetworkConnect>
 
 	<!--SYSMON EVENT ID 4 : RESERVED FOR SYSMON STATUS MESSAGES-->
